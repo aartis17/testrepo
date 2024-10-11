@@ -1,4 +1,4 @@
-ame: Testing Xcodes
+name: Testing Xcodes
 on:
   workflow_dispatch:
 jobs:
