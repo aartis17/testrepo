@@ -1,0 +1,17 @@
+name: Testing curl
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'macos-13', 'macos-14-large']
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: add icon
+      run: curl https://i.pinimg.com/originals/ca/a9/df/caa9df0ae36595e7d4b9961596adc218.png > some.png
+    - uses: actions/upload-artifact@v4
+      with:
+        name: my-artifact
+        path: some.png
