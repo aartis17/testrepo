@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ 'macos-13', 'macos-14-large', 'macos-14-xlarge']
+        os: [ 'macos-14', 'macos-14-large']
     runs-on: ${{ matrix.os }}
     steps:
     - name: add icon
