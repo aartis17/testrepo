@@ -1,0 +1,22 @@
+name: Enable Corepack and Use Yarn
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'macos-15']
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Enable Corepack
+      run: corepack enable
+
+    - name: Install dependencies using Yarn
+      run: yarn install
