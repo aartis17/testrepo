@@ -15,6 +15,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       
+    - name: install Corepack
+      run: brew install corepack  
+      
     - name: Enable Corepack
       run: corepack enable
 
