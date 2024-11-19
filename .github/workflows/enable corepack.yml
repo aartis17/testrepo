@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: install Corepack
-      run: brew install corepack  
+      run:  npm install -g corepack
       
     - name: Enable Corepack
       run: corepack enable
