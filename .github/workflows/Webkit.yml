@@ -1,0 +1,40 @@
+name: Webkit Test
+on: push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'macos-15-xlarge', 'macos-15-large']
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: List available Xcode versions
+      run: ls /Applications | grep Xcode
+      
+    - name: Set up Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.1.0.app/Contents/Developer
+      
+    - name: Show current version of Xcode
+      run: xcodebuild -version
+
+    - name: Make run_tests.sh Executable 
+      run: chmod +x .github/workflows/run_tests.sh
+      
+    - name: Run tests
+      run: .github/workflows/run_tests.sh
+
+    - name: Read File Content
+      id: read-file
+      run: | 
+         # Read the content of the file into a variable
+         FILE_CONTENT=$(cat .github/workflows/run_tests.sh) 
+         # Print the content (optional)
+         echo "$FILE_CONTENT
