@@ -1,0 +1,30 @@
+name: xcode build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'macos-14','macos-15-xlarge']
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set Xcode version
+      run: |
+        echo "Setting Xcode version..."
+        sudo xcode-select -s /Applications/Xcode_15.4.app
+
+    - name: List all available simulators (debugging)
+      run: |
+        echo "Listing all available simulators..."
+        # List all simulators without filtering to debug output
+        xcrun simctl list devices
+
+    - name: Find .xcworkspace file
+      run: find . -name "*.xcworkspace"
