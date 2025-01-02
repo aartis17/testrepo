@@ -28,3 +28,15 @@ jobs:
 
     - name: Find .xcworkspace file
       run: find . -name "*.xcworkspace"
+
+
+    - name: Build 
+      run: |
+          xcodebuild \
+            -workspace sim.xcworkspace \
+            -scheme sim \
+            -derivedDataPath DerivedData/ \
+            -enableCodeCoverage YES \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=18.1" \
+            clean build test | xcbeautify
