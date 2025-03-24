@@ -1,0 +1,30 @@
+name: check xcode build time
+
+on: push
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'macos-14']
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_16.2.app && /usr/bin/xcodebuild -version
+
+    - name: check Xcode Build time
+      run: |
+        echo "Building project manually.."
+        xcodebuild -project sim.xcodeproj -scheme sim -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2' \
+        -skipPackagePluginValidation \
+            -skipMacroValidation \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            -derivedDataPath .build \
+         build | xcbeautify --renderer github-actions
