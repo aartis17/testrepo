@@ -21,7 +21,7 @@ jobs:
     - name: check Xcode Build time
       run: |
         echo "Building project manually.."
-        xcodebuild -project sim.xcodeproj -scheme sim -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2' \
+        xcodebuild -project sim.xcodeproj -scheme sim -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.1' \
         -skipPackagePluginValidation \
             -skipMacroValidation \
             CODE_SIGN_IDENTITY="" \
