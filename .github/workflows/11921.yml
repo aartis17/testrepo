@@ -11,3 +11,9 @@ jobs:
       with:
         xcode-version: ~16.2
      #   action: none # This finds and selects Xcode
+
+    - name: Select Xcode
+      uses: mxcl/xcodebuild@v3
+      with:
+          xcode: ~16.2
+          action: none # This finds and selects the specified Xcode version
