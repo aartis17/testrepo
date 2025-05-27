@@ -1,0 +1,27 @@
+name: Test for python module
+
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-15-large, macos-15]
+        py: [3, 3.9]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.py }}
+
+
+      - shell: python
+        run: |
+         import socket
+         socket.gethostname()
+         
+      - shell: python
+        run: |
+         import socket
+         socket.getfqdn()
