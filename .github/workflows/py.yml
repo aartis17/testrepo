@@ -7,8 +7,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ macos-15-large, macos-15]
-        py: [3, 3.9]
+        os: [ macos-15-large, macos-15, macos-14, macos-14-large]
+        py: [3.12.10, 3.11.9, 3.13.3, 3.9.13]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/setup-python@v5
