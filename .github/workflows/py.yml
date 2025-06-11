@@ -11,9 +11,7 @@ jobs:
         py: [3.12.10, 3.11.9, 3.13.3, 3.9.13]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.py }}
+      
 
 
       - shell: python
